@@ -38,4 +38,5 @@ RUN wget https://bootstrap.pypa.io/pip/3.8/get-pip.py \
 USER ${HOST_USER}
 RUN pip3 install pygame==2.6.1 pynput==1.7.7 \
     && pip3 install build~=1.2 \
+    && pip3 install 'hex-util-msg>=0.1.0a0' \
     && pip3 cache purge
