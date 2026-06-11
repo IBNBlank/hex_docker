@@ -117,7 +117,7 @@ source /opt/ros/noetic/setup.bash --extend
 source ${HOME}/catkin_ws/devel/setup.bash --extend
 
 # HexFellow
-echo -e "\033[36m\033[1m##########################################################################\033[0m\n"
+echo -e "\033[36m\033[1m################################################################\033[0m"
 printf "\033[36m\033[1m%s\033[0m\n" "$(
 	cat <<'EOF'
    _   _  _______   ________ _____ _      _     _____  _    _ 
@@ -131,7 +131,7 @@ EOF
 echo -e " "
 
 # net_interface master ip
-echo -e "\033[36m\033[1m#### net_interface master ################################################\033[0m"
+echo -e "\033[36m\033[1m#### net_interface master ######################################\033[0m"
 net_interface="lo" # localhost
 net_interface_ip=$(ip -4 addr show $net_interface | grep inet | awk '{print $2}' | cut -d / -f 1)
 export ROS_IP=$net_interface_ip
@@ -140,10 +140,10 @@ export ROS_MASTER_URI=http://$net_interface_ip:11311
 echo "ROS_IP = ${ROS_IP}"
 echo "ROS_HOSTNAME = ${ROS_HOSTNAME}"
 echo "ROS_MASTER_URI = ${ROS_MASTER_URI}"
-echo -e "\033[36m\033[1m##########################################################################\033[0m\n"
+echo -e "\033[36m\033[1m################################################################\033[0m\n"
 
 # # other master ip
-# echo -e "\033[36m\033[1m#### other master ########################################################\033[0m"
+# echo -e "\033[36m\033[1m#### other master ##############################################\033[0m"
 # other_ip="172.17.0.1"
 # net_interface="eth0"
 # net_interface_ip=`ip -4 addr show $net_interface | grep inet | awk '{print $2}' | cut -d / -f 1`
@@ -153,4 +153,4 @@ echo -e "\033[36m\033[1m########################################################
 # echo "ROS_IP = ${ROS_IP}"
 # echo "ROS_HOSTNAME = ${ROS_HOSTNAME}"
 # echo "ROS_MASTER_URI = ${ROS_MASTER_URI}"
-# echo -e "\033[36m\033[1m##########################################################################\033[0m\n"
+# echo -e "\033[36m\033[1m################################################################\033[0m\n"
