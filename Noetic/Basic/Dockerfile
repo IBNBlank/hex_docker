@@ -39,4 +39,5 @@ USER ${HOST_USER}
 RUN pip3 install pygame==2.6.1 pynput==1.7.7 \
     && pip3 install build~=1.2 \
     && pip3 install 'hex-util-msg>=0.1.0a0' \
+    && pip3 install 'hex-util-ros>=0.0.1a0' \
     && pip3 cache purge
