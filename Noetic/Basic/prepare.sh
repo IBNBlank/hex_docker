@@ -16,7 +16,7 @@ host_user=$(whoami)
 display=$DISPLAY
 data_path=/mnt/data
 git_source_path=$SHELL_DIR/../../../applications/Noetic/Basic/git_source
-catkin_ws_path=$SHELL_DIR/../../../applications/Noetic/Basic/catkin_ws
+hex_ws_path=$SHELL_DIR/../../../applications/Noetic/Basic/hex_ws
 ssh_path=$SHELL_DIR/../../../ssh
 
 # Check if the current UID is 1000
@@ -40,7 +40,7 @@ hex_container_start \
     --user ${host_user} \
     --display ${display} \
     --git_source ${git_source_path} \
-    --catkin_ws ${catkin_ws_path} \
+    --hex_ws ${hex_ws_path} \
     --data ${data_path} \
     --ssh ${ssh_path}
 

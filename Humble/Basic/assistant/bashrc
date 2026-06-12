@@ -124,7 +124,7 @@ esac
 
 # ROS2
 source /opt/ros/humble/setup.bash --extend
-source ${HOME}/catkin_ws/install/local_setup.bash --extend
+source ${HOME}/hex_ws/install/local_setup.bash --extend
 
 # HexFellow
 echo -e "\033[36m\033[1m################################################################\033[0m"

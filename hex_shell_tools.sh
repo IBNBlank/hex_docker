@@ -50,7 +50,7 @@ hex_image_build() {
 # host user (necessary)
 # display (necessary)
 # git_source path (optional)
-# catkin_ws path (optional)
+# hex_ws path (optional)
 # rosbag path (optional)
 # ssh path (optional)
 hex_container_start() {
@@ -59,7 +59,7 @@ hex_container_start() {
   local host_user=""
   local display=""
   local git_source_path=""
-  local catkin_ws_path=""
+  local hex_ws_path=""
   local rosbag_path=""
   local data_path=""
   local ssh_path=""
@@ -86,8 +86,8 @@ hex_container_start() {
       git_source_path=$2
       shift 2
       ;;
-    -w | --catkin_ws)
-      catkin_ws_path=$2
+    -w | --hex_ws)
+      hex_ws_path=$2
       shift 2
       ;;
     -b | --rosbag)
@@ -134,9 +134,9 @@ hex_container_start() {
     git_source_option="-v ${git_source_path}:/home/hexfellow/git_source:rw"
   fi
 
-  local catkin_ws_option=""
-  if [ -n "${catkin_ws_path}" ]; then
-    catkin_ws_option="-v ${catkin_ws_path}:/home/hexfellow/catkin_ws:rw"
+  local hex_ws_option=""
+  if [ -n "${hex_ws_path}" ]; then
+    hex_ws_option="-v ${hex_ws_path}:/home/hexfellow/hex_ws:rw"
   fi
 
   local rosbag_option=""
@@ -171,7 +171,7 @@ hex_container_start() {
     -v /run/user/$(id -u ${host_user}):/run/user/$(id -u ${host_user}):rw \
     -w /home/hexfellow \
     ${git_source_option} \
-    ${catkin_ws_option} \
+    ${hex_ws_option} \
     ${rosbag_option} \
     ${data_option} \
     ${ssh_option} \

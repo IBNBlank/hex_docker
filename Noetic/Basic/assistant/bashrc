@@ -109,7 +109,7 @@ fi
 
 # ROS
 source /opt/ros/noetic/setup.bash --extend
-source ${HOME}/catkin_ws/devel/setup.bash --extend
+source ${HOME}/hex_ws/devel/setup.bash --extend
 
 # HexFellow
 echo -e "\033[36m\033[1m################################################################\033[0m"
@@ -152,4 +152,4 @@ echo -e "\033[36m\033[1m########################################################
 
 # hex aliases
 alias hex_detach='xdotool key ctrl+p; xdotool key ctrl+q'
-alias hex_catkin_build='catkin_make -DCMAKE_BUILD_TYPE=Release'
+alias hex_catkin_make='catkin_make -DCMAKE_BUILD_TYPE=Release'
