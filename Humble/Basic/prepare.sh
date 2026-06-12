@@ -5,7 +5,7 @@
 # Date  : 2025-03-26
 ################################################################
 
-SHELL_DIR=$(dirname "$0")
+SHELL_DIR="$(cd "$(dirname "$0")" && pwd)"
 CURRENT_DIR=$(pwd)
 BUILD_FLAG="true"
 
