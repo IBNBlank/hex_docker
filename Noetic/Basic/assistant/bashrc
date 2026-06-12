@@ -91,7 +91,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias detach='xdotool key ctrl+p; xdotool key ctrl+q'
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
@@ -107,10 +106,6 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
-
-# ssh-agent
-eval $(ssh-agent) >/dev/null 2>&1
-ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1
 
 # ROS
 source /opt/ros/noetic/setup.bash --extend
@@ -154,3 +149,7 @@ echo -e "\033[36m\033[1m########################################################
 # echo "ROS_HOSTNAME = ${ROS_HOSTNAME}"
 # echo "ROS_MASTER_URI = ${ROS_MASTER_URI}"
 # echo -e "\033[36m\033[1m################################################################\033[0m\n"
+
+# hex aliases
+alias hex_detach='xdotool key ctrl+p; xdotool key ctrl+q'
+alias hex_catkin_build='catkin_make -DCMAKE_BUILD_TYPE=Release'

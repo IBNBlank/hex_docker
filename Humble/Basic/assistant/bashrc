@@ -91,7 +91,6 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-alias detach='xdotool key ctrl+p; xdotool key ctrl+q'
 
 if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
@@ -122,10 +121,6 @@ case ":${PATH}:" in
 	export PATH="$HOME/.cargo/bin:$PATH"
 	;;
 esac
-
-# ACADOS
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"${HOME}/download/acados/lib"
-export ACADOS_SOURCE_DIR="${HOME}/download/acados"
 
 # ROS2
 source /opt/ros/humble/setup.bash --extend
@@ -172,3 +167,7 @@ echo -e "\033[36m\033[1m########################################################
 # echo "ROS_DOMAIN_ID = ${ROS_DOMAIN_ID}"
 # echo "ROS_LOCALHOST_ONLY = ${ROS_LOCALHOST_ONLY}"
 # echo -e "\033[36m\033[1m################################################################\033[0m\n"
+
+# hex aliases
+alias hex_detach='xdotool key ctrl+p; xdotool key ctrl+q'
+alias hex_colcon_build='colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release'
