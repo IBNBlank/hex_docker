@@ -40,4 +40,6 @@ RUN pip3 install pygame==2.6.1 pynput==1.7.7 \
     && pip3 install build~=1.2 \
     && pip3 install 'hex-util-msg>=0.1.0a0' \
     && pip3 install 'hex-util-ros>=0.0.1a0' \
+    && pip3 install "eclipse-zenoh<1.3" \
+    && pip3 install 'hex-util-zenoh>=0.0.1a1' \
     && pip3 cache purge

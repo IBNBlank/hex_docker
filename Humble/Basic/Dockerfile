@@ -30,6 +30,15 @@ RUN echo "${HOST_USER} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/${HOST_USER} \
 COPY ./assistant/docker-clean /etc/apt/apt.conf.d/docker-clean
 COPY --chown=${HOST_USER}:${HOST_USER} ./assistant/bashrc /home/${HOST_USER}/.bashrc
 
+# install cargo
+USER ${HOST_USER}
+RUN (cd /home/${HOST_USER} && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y)
+RUN /home/${HOST_USER}/.cargo/bin/cargo install cargo-deb
+RUN mkdir -p /home/${HOST_USER}/.local/share/bash-completion/completions \
+    && /home/${HOST_USER}/.cargo/bin/rustup completions bash       > /home/${HOST_USER}/.local/share/bash-completion/completions/rustup \
+    && /home/${HOST_USER}/.cargo/bin/rustup completions bash cargo > /home/${HOST_USER}/.local/share/bash-completion/completions/cargo
+USER root
+
 # install python packages needed
 RUN wget https://bootstrap.pypa.io/get-pip.py \
     && python3 get-pip.py \
@@ -37,7 +46,7 @@ RUN wget https://bootstrap.pypa.io/get-pip.py \
     && pip3 cache purge
 USER ${HOST_USER}
 RUN pip3 install pygame==2.6.1 pynput==1.7.7 scipy==1.15.3 matplotlib==3.10.3 \
-    && pip3 install build~=1.2 \
     && pip3 install 'hex-util-msg>=0.1.0a0' \
     && pip3 install 'hex-util-ros>=0.0.1a0' \
+    && pip3 install 'hex-util-zenoh>=0.0.1a1' \
     && pip3 cache purge
