@@ -17,6 +17,7 @@ RUN apt-get update \
     && apt-get install -y ros-humble-desktop-full \
     && apt-get install -y ros-humble-rosbridge-suite \
     && apt-get install -y ros-humble-foxglove-bridge \
+    && apt-get install -y ros-humble-joint-state-publisher ros-humble-joint-state-publisher-gui \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y libopencv-dev \
     && rm -rf /var/lib/apt/lists/* && apt-get autoremove -y && apt-get clean -y
 

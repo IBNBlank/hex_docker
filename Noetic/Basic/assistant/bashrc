@@ -107,6 +107,21 @@ if ! shopt -oq posix; then
 	fi
 fi
 
+# ssh-agent
+eval $(ssh-agent) >/dev/null 2>&1
+ssh-add ~/.ssh/id_ed25519 >/dev/null 2>&1
+
+# rustup shell setup
+# affix colons on either side of $PATH to simplify matching
+case ":${PATH}:" in
+*:"$HOME/.cargo/bin":*) ;;
+
+*)
+	# Prepending path in case a system-installed rustc needs to be overridden
+	export PATH="$HOME/.cargo/bin:$PATH"
+	;;
+esac
+
 # ROS
 source /opt/ros/noetic/setup.bash --extend
 source ${HOME}/hex_ws/devel/setup.bash --extend
