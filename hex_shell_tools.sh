@@ -154,6 +154,15 @@ hex_container_start() {
     ssh_option="-v ${ssh_path}:/home/hexfellow/.ssh:ro"
   fi
 
+  # grant access to /dev/input/event* (needed by evdev) by joining the host's
+  # input group; docker only forwards the primary gid, so supplementary groups
+  # must be added explicitly via --group-add
+  local input_group_option=""
+  local input_gid="$(getent group input | cut -d: -f3)"
+  if [ -n "${input_gid}" ]; then
+    input_group_option="--group-add ${input_gid}"
+  fi
+
   xhost +
   docker run -dit \
     --name=${container_name} \
@@ -168,6 +177,7 @@ hex_container_start() {
     -v /dev:/dev:rw \
     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
     -u $(id -u ${host_user}):$(id -g ${host_user}) \
+    ${input_group_option} \
     -v /run/user/$(id -u ${host_user}):/run/user/$(id -u ${host_user}):rw \
     -w /home/hexfellow \
     ${git_source_option} \
